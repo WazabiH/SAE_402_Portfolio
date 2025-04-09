@@ -86,9 +86,56 @@ input, select, textarea {
 		height: 100%;
 	}
 
-	body {
+	
+
+	nav {
 		background: #ffffff;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 1000;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 	}
+
+	nav ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		justify-content: center;
+	}
+
+	nav ul li {
+		margin: 0 1em;
+	}
+
+	nav ul li a {
+		display: block;
+		padding: 1em;
+		color: #544d55;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: 0.8em;
+		letter-spacing: 0.125em;
+		transition: color 0.2s ease-in-out;
+	}
+
+	nav ul li a:hover {
+		color: #4eb980;
+	}
+
+	@media screen and (max-width: 736px) {
+		nav ul {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		nav ul li {
+			margin: 0;
+		}
+	}
+	
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
