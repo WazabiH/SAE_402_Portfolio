@@ -1,3 +1,27 @@
+<?php
+// Inclure le fichier de connexion
+require_once 'db_connection.php';
+
+// Récupération des réseaux sociaux depuis la base de données
+$requeteSQL = "SELECT nom_du_reseau, lien, icon FROM social_media WHERE actif = 1";
+$result = mysqli_query($connexion, $requeteSQL);
+
+if (!$result) {
+    die("Erreur dans la requête : " . mysqli_error($connexion));
+}
+?>
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+
+
 <!DOCTYPE HTML>
 <!--
 	Directive by HTML5 UP
@@ -323,15 +347,25 @@
 								</ul>
 							</div>
 						</div>
-					</form>
+                    </form>
 
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-					</ul>
+                    <!-- Section réseaux sociaux -->
+                    <div class="social-links">
+                        <?php 
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<a href="' . htmlspecialchars($row["lien"]) . '" 
+                                     class="' . htmlspecialchars($row["nom_du_reseau"]) . '" 
+                                     target="_blank">
+                                     <i class="bi bi-' . htmlspecialchars($row["icon"]) . '"></i>
+                                  </a>';
+                        }
+                        ?>
+                    </div>
+
+                    <?php
+                    // Fermeture de la connexion
+                    mysqli_close($connexion);
+                    ?>
 
 					<ul class="copyright">
 						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
