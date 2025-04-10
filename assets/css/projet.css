@@ -1,0 +1,70 @@
+/* Styles globaux */
+body {
+    font-family: Arial, sans-serif;
+    background: #198754; /* Vert principal */
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Formulaire */
+form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: left;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    color: #198754;
+}
+
+/* Champs de formulaire uniformes */
+input[type="text"], 
+input[type="url"], 
+textarea, 
+input[type="file"], 
+input[type="submit"] {
+    width: 100%; /* Même largeur pour tous */
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #198754;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+    box-sizing: border-box; /* Évite les décalages */
+}
+
+/* Ajustement de la zone de texte */
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Bouton uniformisé */
+input[type="submit"] {
+    background-color: #198754;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #145c32; /* Vert plus foncé */
+}

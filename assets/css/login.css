@@ -1,0 +1,57 @@
+/* Styles globaux */
+body {
+    font-family: Arial, sans-serif;
+    background: #198754; /* Vert principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Conteneur du formulaire */
+.login-container {
+    background: #ffffff; /* Blanc */
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    width: 320px; /* Largeur fixe */
+}
+
+/* Titre */
+h2 {
+    margin-bottom: 20px;
+    color: #198754; /* Vert principal */
+}
+
+/* Champs de formulaire et bouton */
+input, button {
+    width: 100%; /* Même largeur */
+    height: 45px; /* Même hauteur */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    display: block;
+}
+
+/* Style spécifique aux inputs */
+input {
+    border: 1px solid #198754;
+    box-sizing: border-box;
+}
+
+/* Bouton */
+button {
+    background: #198754; /* Vert principal */
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #145c32; /* Vert plus foncé */
+}
