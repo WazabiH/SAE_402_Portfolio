@@ -105,7 +105,7 @@ if (!$result) {
 				</div>
 			</div>
 
-		<!-- Footer -->
+<!------------------- FORMULAIRE DE CONTACT ------------------------>
 			<div id="footer">
 				<div class="container medium">
 
@@ -119,24 +119,26 @@ if (!$result) {
 				 opportunités dans le développement web.
 			</p>
 
-			<form method="post" action="contact.php">
-    <div class="row">
-        <div class="col-6 col-12-mobilep">
-            <input type="text" name="name" placeholder="Nom" required />
-        </div>
-        <div class="col-6 col-12-mobilep">
-            <input type="email" name="email" placeholder="Email" required />
-        </div>
-        <div class="col-12">
-            <textarea name="message" placeholder="Message" rows="6" required></textarea>
-        </div>
-        <div class="col-12">
-            <ul class="actions special">
-                <li><input type="submit" value="Envoyer le message" /></li>
-            </ul>
-        </div>
-    </div>
-</form>
+			<form method="post" action="">
+				<div class="row">
+					<div class="col-6 col-12-mobilep">
+						<input type="text" name="name" placeholder="Nom" required />
+					</div>
+					<div class="col-6 col-12-mobilep">
+						<input type="email" name="email" placeholder="Email" required />
+					</div>
+					<div class="col-12">
+						<textarea name="message" placeholder="Message" rows="6" required></textarea>
+					</div>
+					<div class="col-12">
+						<ul class="actions special">
+							<li><input type="submit" value="Envoyer le message" /></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+
+<!------------------- RESAUX SOCIAUX ------------------------>
 
                     <!-- Section réseaux sociaux -->
 					<div class="social-links">
