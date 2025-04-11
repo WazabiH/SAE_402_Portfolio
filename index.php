@@ -11,6 +11,7 @@ if (!$result) {
 }
 ?>
 
+
 <!DOCTYPE HTML>
 <!--
 	Directive by HTML5 UP
@@ -27,7 +28,7 @@ if (!$result) {
 
 	</head>
 	<body class="is-preload">
-
+		
 		<!-- Header -->
 
 			<nav id="nav">
@@ -119,8 +120,12 @@ if (!$result) {
 				 opportunités dans le développement web.
 			</p>
 
+			<?php include './Include/sendmail.php'; ?>
 			<form method="post" action="">
 				<div class="row">
+					<div class="col-6 col-12-mobilep">
+						<input type="text" name="firstname" placeholder="Prénom" required />
+					</div>
 					<div class="col-6 col-12-mobilep">
 						<input type="text" name="name" placeholder="Nom" required />
 					</div>
@@ -132,11 +137,12 @@ if (!$result) {
 					</div>
 					<div class="col-12">
 						<ul class="actions special">
-							<li><input type="submit" value="Envoyer le message" /></li>
+							<li><input type="submit" name="envoi" value="Envoyer le message" /></li>
 						</ul>
 					</div>
 				</div>
 			</form>
+
 
 <!------------------- RESAUX SOCIAUX ------------------------>
 
