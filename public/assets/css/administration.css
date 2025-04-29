@@ -1,0 +1,141 @@
+/*==================== Variables ====================*/
+:root {
+    --primary:    #198754;
+    --primary-d:  #145c32;
+    --white:      #ffffff;
+    --bg:         #f4f6f8;
+    --text-dark:  #333333;
+    --shadow:     rgba(0, 0, 0, 0.1);
+  }
+  
+  /*==================== Reset & Global ====================*/
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /*==================== Header ====================*/
+  .dashboard-header {
+    background: var(--primary);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px var(--shadow);
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .logout-btn {
+    background: var(--white);
+    color: var(--primary);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 2px 6px var(--shadow);
+    transition: background 0.2s, color 0.2s;
+  }
+  .logout-btn:hover {
+    background: var(--primary-d);
+    color: var(--white);
+  }
+  
+  /*==================== Main Content ====================*/
+  .dashboard-main {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Grille responsive de cartes */
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background: var(--white);
+    color: var(--text-dark);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+  }
+  
+  .card span:last-child {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px var(--shadow);
+  }
+  
+  /*==================== Bouton Retour ====================*/
+  .btn-return {
+    display: inline-block;
+    color: var(--primary);
+    text-decoration: none;
+    border: 2px solid var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-return:hover {
+    background: var(--primary);
+    color: var(--white);
+  }
+  
+  /*==================== Responsive tweaks ====================*/
+  @media (max-width: 500px) {
+    .dashboard-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .dashboard-header h1 {
+      font-size: 1.4rem;
+    }
+  
+    .cards-container {
+      grid-template-columns: 1fr;
+    }
+  
+    .dashboard-main {
+      padding: 1rem;
+    }
+  }
+  
