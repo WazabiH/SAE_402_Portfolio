@@ -15,9 +15,7 @@
     <ul>
       <li><a href="../projet/projet.php"       class="active">Projets</a></li>
       <li><a href="../categories/categories.php">Catégories</a></li>
-      <li><a href="../experience/experience.php">Expériences</a></li>
-      <li><a href="../reseaux/reseaux_sociaux.php">Réseaux sociaux</a></li>
-      <li><a href="../public/index.php">Retour portfolio</a></li>
+      <li><a href="../reseaux/reseaux.php">Réseaux sociaux</a></li>
       <li><a href="../login/logout.php">Déconnexion</a></li>
     </ul>
   </div>

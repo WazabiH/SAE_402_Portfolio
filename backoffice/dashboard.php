@@ -30,17 +30,11 @@ require_once __DIR__ . '/includes/auth.php';           // Vérifie la session
         <i class="bi bi-tags-fill icon"></i>
         <span>Catégories</span>
       </a>
-      <a href="experience/experience.php" class="card">
-        <i class="bi bi-briefcase-fill icon"></i>
-        <span>Expériences</span>
-      </a>
-      <a href="reseaux/reseaux_sociaux.php" class="card">
+      <a href="reseaux/reseaux.php" class="card">
         <i class="bi bi-share-fill icon"></i>
         <span>Réseaux sociaux</span>
       </a>
     </div>
-
-    <a href="../public/index.php" class="btn-return">← Retour au portfolio</a>
   </main>
 </body>
 </html>

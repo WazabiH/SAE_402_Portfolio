@@ -132,3 +132,15 @@
     transform: translateY(-2px);
   }
   
+  /* === Inputs et textarea du formulaire === */
+.form-container input[type="text"],
+.form-container input[type="url"],
+.form-container textarea {
+  width: 100%;
+  padding: var(--padding);
+  margin-bottom: var(--gap);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  box-sizing: border-box;
+}

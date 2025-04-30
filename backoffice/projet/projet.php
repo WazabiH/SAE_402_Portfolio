@@ -1,17 +1,21 @@
 <?php
+// backoffice/projet/projet.php
+
 include __DIR__ . '/../includes/db_connection.php';
 include __DIR__ . '/../includes/barreNav.php';
+include __DIR__ . '/../includes/functions.php';  // <-- assure-toi que c'est bien functions.php
 
-// Récupération du paramètre de recherche
-$search = '';
-$where_clauses = [];
-if (!empty($_GET['search'])) {
-    $search = trim($_GET['search']);
-    $esc = mysqli_real_escape_string($conn, $search);
-    $where_clauses[] = "(p.nom LIKE '%$esc%' OR p.description LIKE '%$esc%')";
-}
+// 1) Récupérer la recherche via la fonction DRY
+$search = getSearchParam('search');
 
-// Requête SQL AVEC JOINTURE
+// 2) Construire la clause WHERE
+$where = buildSearchWhere(
+    ['p.nom', 'p.description'], 
+    $conn, 
+    'search'
+);
+
+// 3) Préparer et exécuter la requête
 $sql = "
   SELECT
     p.id,
@@ -23,40 +27,41 @@ $sql = "
   FROM projet AS p
   JOIN categories AS c
     ON p.categorie_id = c.id
-"
-. (!empty($where_clauses)
-    ? ' WHERE ' . implode(' AND ', $where_clauses)
-    : ''
-  )
-. " ORDER BY p.date_realisation DESC
+" 
+. $where . "
+  ORDER BY p.date_realisation DESC
 ";
 
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     die('Erreur MySQL : ' . mysqli_error($conn));
 }
+$count = mysqli_num_rows($result);
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <title>Liste des Projets</title>
   <link rel="stylesheet" href="../../public/assets/css/liste_projets.css">
   <link rel="stylesheet" href="../../public/assets/css/barreNav.css">
-  <title>Liste des Projets</title>
 </head>
 <body>
 
   <div class="project-list-header">
     <div class="title-count">
       <h2>Mes Projets</h2>
-      <span class="count"><?= mysqli_num_rows($result) ?> projet(s)</span>
+      <span class="count"><?= $count ?> projet(s)</span>
     </div>
     <div class="controls">
-      <form method="GET" action="" class="search-container">
-        <input type="search" name="search" placeholder="Rechercher un projet..." value="<?= htmlspecialchars($search) ?>">
-        <button type="submit">🔍</button>
-      </form>
+      <?php 
+        // Affiche la barre de recherche en une ligne
+        renderSearchForm(
+          '',                    // action = page courante
+          'search',              // nom du champ GET
+          'Rechercher un projet…'// placeholder
+        ); 
+      ?>
       <a href="ajouter_projet.php" class="btn-add">Ajouter un projet</a>
     </div>
   </div>
@@ -75,23 +80,29 @@ if (!$result) {
     <tbody>
       <?php while ($row = mysqli_fetch_assoc($result)): ?>
       <tr>
-        <td><?= htmlspecialchars($row['nom']) ?></td>
-        <td><?= nl2br(htmlspecialchars($row['description'])) ?></td>
-        <td><?= htmlspecialchars($row['date_realisation']) ?></td>
+        <td><?= htmlspecialchars($row['nom'], ENT_QUOTES) ?></td>
+        <td><?= nl2br(htmlspecialchars($row['description'], ENT_QUOTES)) ?></td>
+        <td><?= htmlspecialchars($row['date_realisation'], ENT_QUOTES) ?></td>
         <td>
           <?php if ($row['image']): ?>
-            <img src="uploads/<?= rawurlencode($row['image']) ?>" alt="<?= htmlspecialchars($row['nom']) ?>">
+            <img 
+              src="uploads/<?= rawurlencode($row['image']) ?>" 
+              alt="<?= htmlspecialchars($row['nom'], ENT_QUOTES) ?>">
           <?php endif; ?>
         </td>
-        <td><?= htmlspecialchars($row['categorie'] ?? '') ?></td>
+        <td><?= htmlspecialchars($row['categorie'], ENT_QUOTES) ?></td>
         <td class="actions">
           <a href="modifier_projet.php?id=<?= $row['id'] ?>" class="edit">Éditer</a>
-          <a href="supprimer_projet.php?id=<?= $row['id'] ?>" class="delete" onclick="return confirm('Supprimer ce projet ?');">Supprimer</a>
+          <a href="supprimer_projet.php?id=<?= $row['id'] ?>" class="delete"
+             onclick="return confirm('Supprimer ce projet ?');">
+            Supprimer
+          </a>
         </td>
       </tr>
       <?php endwhile; ?>
     </tbody>
   </table>
 
+  <?php mysqli_close($conn); ?>
 </body>
 </html>
