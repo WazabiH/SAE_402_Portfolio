@@ -1,153 +1,149 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 800px;
-    background-color: #f9f9f9;
-    color: #333;
-}
+/* ajouter_projet.css - harmonisation avec la DA + zone de glisser-déposer */
 
-
-h2 {
-    margin-top: 300px;
-    font-size: 32px;
-    color: #198754;
-}
-
-
-form {
+:root {
+    --primary: #198754;
+    --primary-dark: #145c32;
+    --white: #ffffff;
+    --text: #333333;
+    --background: #f8f9fa;
+    --radius: 0.5rem;
+    --padding: 1rem;
+    --gap: 1rem;
+    --transition: 0.3s;
+  }
+  
+  /* Reset global */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+  }
+  
+  /* Conteneur du formulaire */
+  .form-container {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: calc(var(--padding) * 2);
+    max-width: 500px;
+    width: 100%;
+    margin: var(--gap) auto;
+  }
+  .form-container h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: var(--gap);
+    text-align: center;
+  }
+  
+  /* Form layout */
+  .form-container form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-input[type="text"],
-textarea,
-input[type="file"],
-input[type="date"],
-select {
+    gap: var(--gap);
+  }
+  
+  /* Champs texte, date, textarea */
+  .form-container input[type="text"],
+  .form-container input[type="date"],
+  .form-container textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #fefefe;
-    transition: border-color 0.3s;
-}
-
-input[type="text"]:focus,
-textarea:focus,
-input[type="file"]:focus,
-input[type="date"]:focus,
-select:focus {
-    border-color: #198754;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: border-color var(--transition);
+  }
+  .form-container input:focus,
+  .form-container textarea:focus {
     outline: none;
-}
-
-textarea {
-    min-height: 150px;
+    border-color: var(--primary);
+  }
+  .form-container textarea {
     resize: vertical;
-}
-
-button[type="submit"] {
-    background-color: #198754;
-    color: white;
-    padding: 14px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-button[type="submit"]:hover {
-    background-color: #145c32;
-    transform: translateY(-2px);
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #555;
-}
-
-.form-group {
+    min-height: 120px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Zone de glisser-déposer pour l'image */
+  .drop-zone {
+    position: relative;
     display: flex;
-    flex-direction: column;
-}
-
-/* Drop Zone améliorée */
-.drop-zone {
-    width: 100%;
-    height: 200px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    color: #777;
+    padding: var(--gap);
     border: 2px dashed #ccc;
-    border-radius: 12px;
-    transition: all 0.3s ease-in-out;
+    border-radius: var(--radius);
     background-color: #fafafa;
-}
-
-.drop-zone:hover {
-    border-color: #198754;
-    background-color: rgba(25, 135, 84, 0.05);
-}
-
-.drop-zone.dragover {
-    background-color: rgba(25, 135, 84, 0.1);
-    border-color: #198754;
-}
-
-.drop-zone .drop-zone__prompt {
-    margin: 0;
-}
-
-.drop-zone__input {
-    display: none;
-}
-
-.drop-zone__thumb {
+    text-align: center;
+    cursor: pointer;
+    transition: border-color var(--transition), background-color var(--transition);
+  }
+  .drop-zone.dragover {
+    border-color: var(--primary);
+    background-color: #f0fff4;
+  }
+  .drop-zone input[type="file"] {
+    position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #cccccc;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-.drop-zone__thumb::after {
-    content: attr(data-label);
-    position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    width: 100%;
-    padding: 5px 0;
-    color: #ffffff;
-    background: rgba(0, 0, 0, 0.6);
-    font-size: 14px;
-    text-align: center;
-}
+    opacity: 0;
+    cursor: pointer;
+  }
+  .drop-zone .drop-zone__prompt {
+    color: #666;
+    font-size: 1rem;
+  }
 
-/* Responsive */
-@media (max-width: 768px) {
-    form {
-        padding: 20px;
+  /* Aperçu de l'image déposée */
+.drop-zone__thumb {
+    display: none;               /* masquée tant qu'aucune image */
+    width: 100%;                 /* 100% de la zone */
+    max-height: 200px;           /* hauteur max */
+    object-fit: contain;         /* sans déformation */
+    margin-top: var(--gap);      /* espacement au-dessus */
+    border-radius: var(--radius);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  /* Quand un fichier est déposé, on affichera la vignette */
+  .drop-zone.dragover .drop-zone__thumb,
+  .drop-zone__thumb[src] {
+    display: block;
+  }
+  
+  
+  /* Bouton submit dans la continuité de .btn-add */
+  .form-container button[type="submit"] {
+    align-self: flex-end;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .form-container button[type="submit"]:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .form-container {
+      padding: var(--padding);
     }
-
-    h2 {
-        font-size: 26px;
+    .form-container button[type="submit"] {
+      width: 100%;
     }
-}
+  }

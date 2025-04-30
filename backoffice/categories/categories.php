@@ -1,5 +1,6 @@
 <?php
-include '../Include/db_connection.php';
+include __DIR__ . '/../includes/db_connection.php';
+include __DIR__ . '/../includes/barreNav.php';
 
 // Vérifier la connexion
 if (!$conn) {
@@ -21,13 +22,12 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/liste_categories.css">
-    <link rel="stylesheet" href="../assets/css/barreNav.css">
+    <link rel="stylesheet" href="../../public/assets/css/liste_categories.css">
+    <link rel="stylesheet" href="../../public/assets/css/barreNav.css">
     <title>Liste des Catégories</title>
 </head>
 <body>
 
-<?php include '../Include/barreNav.php'; ?>
 
 <main>
     <h2>Liste des Catégories</h2>

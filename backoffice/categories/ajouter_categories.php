@@ -1,5 +1,6 @@
 <?php 
-include '../Include/db_connection.php';
+include __DIR__ . '/../includes/db_connection.php';
+include __DIR__ . '/../includes/barreNav.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = mysqli_real_escape_string($conn, $_POST["nom"]);
@@ -21,12 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/ajouter_categorie.css">
-    <link rel="stylesheet" href="../assets/css/barreNav.css">
+    <link rel="stylesheet" href="../../public/assets/css/ajouter_categories.css">
+    <link rel="stylesheet" href="../../public/assets/css/barreNav.css">
     <title>Ajouter une catégorie</title>
 </head>
 <body>
-<?php include '../Include/barreNav.php'; ?>
     <h2>Ajouter une catégorie</h2>
     
     <form action="ajouter_categories.php" method="post">

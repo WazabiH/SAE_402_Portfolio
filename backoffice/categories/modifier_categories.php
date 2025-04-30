@@ -1,5 +1,6 @@
 <?php
-include '../Include/db_connection.php';
+include __DIR__ . '/../includes/db_connection.php';
+include __DIR__ . '/../includes/barreNav.php';
 
 if (isset($_GET["id"])) {
     $id = (int) $_GET["id"];
@@ -46,12 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/barreNav.css">
-    <link rel="stylesheet" href="../assets/css/modifier_categories.css">
+    <link rel="stylesheet" href="../../public/assets/css/modifier_categories.css">
+    <link rel="stylesheet" href="../../public/assets/css/barreNav.css">
     <title>Modifier une Catégorie</title>
 </head>
 <body>
 
-<?php include '../Include/barreNav.php'; ?>
 
 <main>
     <h2>Modifier une Catégorie</h2>

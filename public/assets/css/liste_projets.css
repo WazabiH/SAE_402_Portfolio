@@ -1,83 +1,83 @@
-/* liste_projets.css */
+/* liste_projets.css - colonnes égales, images plus grandes, recherche et boutons rétablis, bouton sans soulignement */
 
-/* Variables de couleur */
+/* Variables */
 :root {
-  --primary:   #198754;
-  --primary-d: #145c32;
-  --white:     #ffffff;
-  --text:      #333333;
+  --primary: #198754;
+  --primary-dark: #145c32;
+  --white: #ffffff;
+  --text: #333333;
+  --background: #f8f9fa;
+  --radius: 0.5rem;
+  --padding: 1rem;
+  --gap: 1rem;
+  --transition: 0.3s;
+  --thumb-size: 100px;
+  --header-height: 3rem;
 }
 
-/* ==================== En-tête de la liste ==================== */
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--background);
+}
+
+/* Project List Header */
 .project-list-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem 5% 1rem;
-  gap: 1rem;
+  padding: var(--padding) 5%;
+  gap: var(--gap);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  z-index: 10;
 }
-
-.project-list-header .title-count {
-  display: flex;
-  flex-direction: column;
-}
-
-.project-list-header h2 {
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: 600;
+.project-list-header .title-count h2 {
+  font-size: 2rem;
   color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+.project-list-header .title-count .count {
+  font-size: 0.9rem;
+  color: var(--primary-dark);
 }
 
-.project-list-header .count {
-  font-size: 0.95rem;
-  color: var(--primary-d);
-}
-
-/* ==================== Contrôles ==================== */
+/* Controls: recherche + bouton ajouter */
 .project-list-header .controls {
   display: flex;
+  gap: var(--gap);
   flex-wrap: wrap;
-  gap: 1rem;
   align-items: center;
 }
 
-/* Sélecteurs filtre/tri */
-.project-list-header select {
-  appearance: none;
-  background: var(--white);
-  color: var(--text);
-  border: 1px solid var(--primary);
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  min-width: 160px;
-  cursor: pointer;
-  transition: border-color .2s;
-}
-.project-list-header select:hover {
-  border-color: var(--primary-d);
-}
-
 /* Recherche */
-.project-list-header .search-container {
+.search-container {
   position: relative;
   border: 1px solid var(--primary);
-  border-radius: 4px;
+  border-radius: var(--radius);
   overflow: hidden;
   width: 240px;
 }
-.project-list-header .search-container input {
+.search-container input {
   width: 100%;
-  padding: .5rem 2.5rem .5rem .75rem;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
   border: none;
   font-size: 1rem;
   outline: none;
 }
-.project-list-header .search-container button {
+.search-container button {
   position: absolute;
-  right: .5rem;
+  right: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
   border: none;
@@ -85,103 +85,103 @@
   cursor: pointer;
   font-size: 1.2rem;
   color: var(--primary);
+  transition: transform var(--transition);
+}
+.search-container button:hover {
+  transform: translateY(-50%) scale(1.1);
 }
 
 /* Bouton Ajouter */
-.project-list-header .btn-add {
-  background: var(--primary);
+.btn-add {
+  display: inline-block;
+  background-color: var(--primary);
   color: var(--white);
-  padding: .6rem 1.4rem;
+  padding: 0.6rem 1.4rem;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius);
   font-size: 1rem;
   font-weight: bold;
-  text-decoration: none;
   cursor: pointer;
-  transition: background .2s;
+  text-decoration: none; /* Suppression de la ligne */
+  transition: background var(--transition), transform var(--transition);
 }
-.project-list-header .btn-add:hover {
-  background: var(--primary-d);
+.btn-add:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  text-decoration: none;
 }
 
-/* ==================== Tableau des projets ==================== */
+/* Tableau des projets */
 .project-table {
   width: 90%;
-  margin: 0 auto 2rem;
+  margin: 1rem auto 2rem;
   border-collapse: collapse;
-  table-layout: auto;
+  table-layout: fixed;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-
-/* En-tête du tableau */
 .project-table thead th {
-  background: var(--primary);
+  background-color: var(--primary);
   color: var(--white);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  font-size: .95rem;
-  padding: 1rem .75rem;
+  font-size: 0.95rem;
+  height: var(--header-height);
+  padding: 0;
   text-align: center;
+  vertical-align: middle;
 }
-
-/* Lignes et cellules */
-.project-table tbody tr:nth-child(even) {
-  background: #e8f5e9;
-}
-.project-table tbody tr:hover {
-  background: #d0eed7;
-}
-
+.project-table th,
 .project-table td {
-  padding: 1rem .75rem;
   border-bottom: 1px solid #ddd;
   vertical-align: middle;
   text-align: center;
+  word-break: break-word;
+  width: calc(100% / 6);
+}
+.project-table td {
+  padding: var(--padding) 0.5rem;
+  height: var(--header-height);
+}
+.project-table tbody tr:nth-child(even) {
+  background-color: #e8f5e9;
+}
+.project-table tbody tr:hover {
+  background-color: #d0eed7;
+  transform: translateY(-2px);
+  transition: background var(--transition), transform var(--transition);
 }
 
-/* Colonnes texte plus larges */
-.project-table th:first-child,
-.project-table td:first-child,
-.project-table th:nth-child(2),
-.project-table td:nth-child(2) {
-  text-align: left;
-  max-width: 300px;
-  word-wrap: break-word;
-}
-
-/* Image */
+/* Images vignettes */
 .project-table img {
-  max-width: 120px;
-  height: auto;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  object-fit: cover;
   display: block;
   margin: 0 auto;
-  border-radius: 4px;
+  border-radius: var(--radius);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Actions (Modifier/Supprimer) */
-.project-table td a {
-  color: var(--primary);
-  text-decoration: none;
-  margin: 0 .5rem;
+/* Actions côte-à-côte */
+.project-table td.actions {
+  white-space: nowrap;
+}
+.project-table td.actions a {
+  display: inline-block;
+  margin: 0 0.5rem;
   font-weight: 500;
+  text-decoration: none;
+  vertical-align: middle;
 }
-.project-table td a.delete {
-  color: #c0392b;
-}
-.project-table td a:hover {
-  text-decoration: underline;
-}
+.project-table td.actions a.edit { color: var(--primary); }
+.project-table td.actions a.delete { color: #c0392b; }
+.project-table td.actions a:hover { text-decoration: underline; }
 
 /* Responsive */
 @media (max-width: 800px) {
-  .project-list-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .project-list-header .controls {
-    width: 100%;
-    justify-content: space-between;
-  }
   .project-table {
     width: 100%;
     display: block;

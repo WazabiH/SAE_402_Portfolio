@@ -1,5 +1,5 @@
 <?php
-include '../Include/db_connection.php';
+include __DIR__ . '/../includes/db_connection.php';
 
 if (isset($_GET["id"])) {
     $id = (int) $_GET["id"];
