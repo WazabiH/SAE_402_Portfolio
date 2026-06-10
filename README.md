@@ -85,6 +85,4 @@ git clone <url-du-repository>
 ## Auteur
 
 Wassila Hamed
-
-Étudiante en informatique, admise en Master Informatique – Parcours Logiciels sûrs à l'UPEC.
  
